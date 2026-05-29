@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Lesion Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-stethoscope"></i> Skin Lesion Diagnosis Predictor</h1>
+        <p>Enter patient details to predict skin lesion diagnosis using machine learning.</p>
+
+        <form action="/predict" method="post" class="prediction-form">
+            <div class="form-group">
+                <label for="age"><i class="fas fa-birthday-cake"></i> Age:</label>
+                <input type="number" id="age" name="age" required min="0" max="120" placeholder="Enter age">
+            </div>
+
+            <div class="form-group">
+                <label for="sex"><i class="fas fa-venus-mars"></i> Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="">Select sex</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="localization"><i class="fas fa-map-marker-alt"></i> Localization:</label>
+                <select id="localization" name="localization" required>
+                    <option value="">Select localization</option>
+                    <option value="face">Face</option>
+                    <option value="trunk">Trunk</option>
+                    <option value="lower extremity">Lower Extremity</option>
+                    <option value="upper extremity">Upper Extremity</option>
+                    <option value="abdomen">Abdomen</option>
+                    <option value="back">Back</option>
+                    <option value="chest">Chest</option>
+                    <option value="foot">Foot</option>
+                    <option value="hand">Hand</option>
+                    <option value="neck">Neck</option>
+                    <option value="scalp">Scalp</option>
+                    <option value="ear">Ear</option>
+                    <option value="genital">Genital</option>
+                    <option value="acral">Acral</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn"><i class="fas fa-search"></i> Predict Diagnosis</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

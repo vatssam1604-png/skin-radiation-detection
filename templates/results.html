@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-chart-bar"></i> Prediction Results</h1>
+
+        <div class="results-section">
+            <h2><i class="fas fa-user"></i> Patient Details</h2>
+            <p><strong>Age:</strong> {{ input_data.age }}</p>
+            <p><strong>Sex:</strong> {{ input_data.sex }}</p>
+            <p><strong>Localization:</strong> {{ input_data.localization }}</p>
+        </div>
+
+        <div class="results-section">
+            <h2><i class="fas fa-diagnoses"></i> Predicted Diagnosis</h2>
+            <div class="diagnosis-result">
+                <p class="diagnosis">{{ diagnosis }}</p>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h2><i class="fas fa-chart-pie"></i> Probability Distribution</h2>
+            <div class="probabilities">
+                {% for class_name, prob in probabilities.items() %}
+                <div class="prob-item">
+                    <span class="class-name">{{ class_name }}</span>
+                    <div class="prob-bar">
+                        <div class="prob-fill" style="width: {{ prob * 100 }}%"></div>
+                    </div>
+                    <span class="prob-value">{{ "%.4f"|format(prob) }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="/" class="btn"><i class="fas fa-arrow-left"></i> Make Another Prediction</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
